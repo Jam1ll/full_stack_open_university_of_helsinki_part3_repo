@@ -35,12 +35,24 @@ const persons = [
 // endpoints
 //
 
+//home
 app.get("/", (request, response) => {
   response.send("<h1>Part 3</h1>");
 });
 
+//getAll
 app.get("/api/persons", (request, response) => {
   response.json(persons);
+});
+
+//info
+app.get("/info", (request, response) => {
+  const date = new Date().toString();
+  response.send(`
+    <h4>Phonebook has info for ${persons.length} people</h4>
+    <br/>
+    <h5>${date}</h5>
+    `);
 });
 
 //
