@@ -1,0 +1,27 @@
+{
+  "name": "part3",
+  "version": "1.0.0",
+  "description": "part 3 UoH",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jam1ll/full_stack_open_university_of_helsinki_part3_repo.git"
+  },
+  "author": "Jamil Guzman Feliz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jam1ll/full_stack_open_university_of_helsinki_part3_repo/issues"
+  },
+  "homepage": "https://github.com/Jam1ll/full_stack_open_university_of_helsinki_part3_repo#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
