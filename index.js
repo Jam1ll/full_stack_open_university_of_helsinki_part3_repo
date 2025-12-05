@@ -55,6 +55,18 @@ app.get("/info", (request, response) => {
     `);
 });
 
+//getById
+app.get("/api/persons/:id", (request, response) => {
+  const id = Number(request.params.id);
+  const foundPerson = persons.filter((p) => p.id === id);
+  console.log("found: ", foundPerson);
+  if (foundPerson.length !== 0) {
+    return response.json(foundPerson);
+  } else {
+    return response.status(404).end();
+  }
+});
+
 //
 // port config
 //
