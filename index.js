@@ -8,7 +8,7 @@ app.use(express.json());
 // data
 //
 
-const persons = [
+let persons = [
   {
     id: 1,
     name: "Arto Hellas",
@@ -82,13 +82,23 @@ app.post("/api/persons", (request, response) => {
     return response.status(404).json({ error: "name or number missing" });
   }
 
+  const foundDuplicate = persons.find(
+    (p) => p.name.toLowerCase() === body.name.toLowerCase()
+  );
+
+  if (foundDuplicate) {
+    return response
+      .status(400)
+      .json({ error: `${foundDuplicate.name} already exists` });
+  }
+
   const person = {
     id: generateId(10, 9999999),
     name: body.name,
     number: body.number,
   };
 
-  persons.concat(person);
+  persons = persons.concat(person);
 
   response.json(person);
 });
