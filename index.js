@@ -74,6 +74,31 @@ app.delete("/api/persons/:id", (request, response) => {
   response.status(204).end();
 });
 
+//create
+app.post("/api/persons", (request, response) => {
+  const body = request.body;
+
+  if (!body.name || !body.number) {
+    return response.status(404).json({ error: "name or number missing" });
+  }
+
+  const person = {
+    id: generateId(10, 9999999),
+    name: body.name,
+    number: body.number,
+  };
+
+  persons.concat(person);
+
+  response.json(person);
+});
+
+const generateId = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 //
 // port config
 //
