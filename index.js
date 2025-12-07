@@ -1,8 +1,26 @@
 const express = require("express");
+const morgan = require("morgan");
 
 const app = express();
-
 app.use(express.json());
+
+//
+// middleware before routes
+//
+
+/*
+const requestLogger = (request, response, next) => {
+  console.log("---");
+  console.log("Method: ", request.method);
+  console.log("Path: ", request.path);
+  console.log("Body: ", request.body);
+  console.log("---");
+  next();
+};
+app.use(requestLogger);
+*/
+
+app.use(morgan("tiny"));
 
 //
 // data
@@ -108,6 +126,16 @@ const generateId = (min, max) => {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+//
+// middleware after routes
+//
+
+const unkownEndpoint = (request, response) => {
+  response.status(404).send({ error: "unkown endpoint" });
+};
+
+app.use(unkownEndpoint);
 
 //
 // port config
